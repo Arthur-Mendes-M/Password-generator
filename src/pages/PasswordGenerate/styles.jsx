@@ -47,10 +47,17 @@ export const Screen = styled.div`
 export const OptionsContainer = styled.div`
     width: 100%;
     display: flex;
+    flex-direction: column;
+    gap: 1rem;
+`
+
+export const Container = styled.div`
+    width: 100%;
+    display: flex;
     gap: .5rem;
 `
 
-export const OptionButton = styled.button`
+export const ActionButton = styled.button`
     background: none;
     border: none;
     border-radius: .3rem;
@@ -76,4 +83,15 @@ export const OptionButton = styled.button`
         color: #08c108;
         border-color: #08c108;
     }
+`
+
+export const PasswordSizeInput = styled.input`
+    background: none;
+    border: none;
+    border-radius: .3rem;
+
+    border: 1px solid #FFFFFF;
+    padding: 1rem .5rem;
+
+    /* flex: 1 0 auto; */
 `

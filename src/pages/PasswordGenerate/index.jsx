@@ -1,11 +1,11 @@
 import { useState } from "react"
-import { BigContainer, Title, GeneratePasswordContainer, Screen, OptionsContainer, OptionButton } from "./styles"
+import { BigContainer, Title, GeneratePasswordContainer, Screen, OptionsContainer, Container, ActionButton, PasswordSizeInput } from "./styles"
 
-const generatePassword = () => {
+const generatePassword = (size) => {
   const allPossibilites = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_!@$#&%"
   let generatedPassword = ""
 
-  for(let i = 12; i > 0; i--) {
+  for(let i = size; i > 0; i--) {
     const number = Math.floor(Math.random() * allPossibilites.length)
     generatedPassword += allPossibilites[number]
   }
@@ -23,6 +23,7 @@ const copyToClipboard = (text) => {
 export const PasswordGenerate = () => {
   const [password, setPassword] = useState("")
   const [copiedToClipboard, setCopyToClipboard] = useState(false)
+  const [passwordSize, setPasswordSize] = useState(12)
 
   return (
     <BigContainer>
@@ -32,21 +33,24 @@ export const PasswordGenerate = () => {
         <Screen>{password}</Screen>
 
         <OptionsContainer>
-          <OptionButton type="button" data-action="generate"
-            onClick={() => {
-              setPassword(generatePassword()) 
-              setCopyToClipboard(false)}
-            }
-          >
-            Gerar
-          </OptionButton>
+          <PasswordSizeInput type="number" min={1} placeholder="Tamanho da senha" value={passwordSize} onChange={event => setPasswordSize(event.currentTarget.value <= 0 ? 12 : event.currentTarget.value)} />
 
-          <OptionButton type="button" data-action="copy" data-active={copiedToClipboard.toString()}
+          <Container>
+            <ActionButton type="button" data-action="generate"
+            onClick={() => {
+              setPassword(generatePassword(passwordSize)) 
+              setCopyToClipboard(false)}
+            }>
+            Gerar
+            </ActionButton>
+
+            <ActionButton type="button" data-action="copy" data-active={copiedToClipboard.toString()}
             onClick={() => setCopyToClipboard(copyToClipboard(password))}>
             {
               copiedToClipboard ? 'Copiado!' : 'Copiar'
             }
-          </OptionButton>
+            </ActionButton>
+          </Container>
         </OptionsContainer>
       </GeneratePasswordContainer>
     </BigContainer>
