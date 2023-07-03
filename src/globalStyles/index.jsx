@@ -27,4 +27,19 @@ export const StyledApplication = createGlobalStyle`
         align-items: center;
         gap: 2rem;
     }
+
+    button, input {
+        background: none;
+        border: none;
+        border-radius: .3rem;
+
+        border: 1px solid #FFFFFF;
+        padding: 1rem .5rem;
+
+        max-width: 100%;
+    }
+
+    button {
+        cursor: pointer;
+    }
 `

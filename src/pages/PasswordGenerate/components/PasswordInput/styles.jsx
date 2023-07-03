@@ -8,12 +8,5 @@ export const Field = styled.div`
 `
 
 export const PasswordSizeInput = styled.input`
-    background: none;
-    border: none;
-    border-radius: .3rem;
-
-    border: 1px solid #FFFFFF;
-    padding: 1rem .5rem;
-
     flex: 1 0 auto;
 `

@@ -28,6 +28,7 @@ export const PasswordGenerate = () => {
   const [password, setPassword] = useState("")
   const [copiedToClipboard, setCopyToClipboard] = useState(false)
   const [passwordSize, setPasswordSize] = useState(12)
+  const [showInput, setShowInput] = useState(false)
 
   return (
     <BigContainer>
@@ -37,17 +38,19 @@ export const PasswordGenerate = () => {
         <Screen>{password}</Screen>
 
         <OptionsContainer>
-          <Password passwordSize={passwordSize} setPasswordSize={setPasswordSize} />
+          {showInput && <Password passwordSize={passwordSize} setPasswordSize={setPasswordSize} />}
+
+          <Button onClick={() => setShowInput((prev) => !prev)}>Custumizar tamanho</Button>
 
           <Container>
             <Button 
               data-action="generate"
               onClick={() => {
-                setPassword(generatePassword(passwordSize)) 
+                setPassword(generatePassword(showInput ? passwordSize || 0 : 12)) 
                 setCopyToClipboard(false)}
               }
             >
-              Gerar
+              Gerar senha de {showInput ? passwordSize || 0 : 12} caracteres
             </Button>
 
             <Button 
